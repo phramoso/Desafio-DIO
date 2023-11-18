@@ -1,39 +1,28 @@
-const readline = require('readline');
+function calcularNivel(vitorias, derrotas) {
+    let saldoVitorias = vitorias - derrotas;
+    let nivel = '';
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
+    if (vitorias < 10) {
+        nivel = 'Ferro';
+    } else if (vitorias >= 11 && vitorias <= 20) {
+        nivel = 'Bronze';
+    } else if (vitorias >= 21 && vitorias <= 50) {
+        nivel = 'Prata';
+    } else if (vitorias >= 51 && vitorias <= 80) {
+        nivel = 'Ouro';
+    } else if (vitorias >= 81 && vitorias <= 90) {
+        nivel = 'Diamante';
+    } else if (vitorias >= 91 && vitorias <= 100) {
+        nivel = 'Lendário';
+    } else {
+        nivel = 'Imortal';
+    }
 
-// Solicita o nome e a quantidade de experiência (XP) do herói
-rl.question("Digite o nome do herói: ", function(nomeHeroi) {
-    rl.question("Digite a quantidade de XP do herói: ", function(xpHeroi) {
-        xpHeroi = parseInt(xpHeroi);
+    return { saldoVitorias, nivel };
+}
 
-        // Estrutura de decisão para determinar o nível do herói com base na XP
-        var nivel;
-
-        if (xpHeroi < 1000) {
-            nivel = "Ferro";
-        } else if (xpHeroi >= 1001 && xpHeroi <= 2000) {
-            nivel = "Bronze";
-        } else if (xpHeroi >= 2001 && xpHeroi <= 5000) {
-            nivel = "Prata";
-        } else if (xpHeroi >= 6001 && xpHeroi <= 7000) {
-            nivel = "Ouro";
-        } else if (xpHeroi >= 7001 && xpHeroi <= 8000) {
-            nivel = "Platina";
-        } else if (xpHeroi >= 8001 && xpHeroi <= 9000) {
-            nivel = "Ascendente";
-        } else if (xpHeroi >= 9001 && xpHeroi <= 10000) {
-            nivel = "Imortal";
-        } else {
-            nivel = "Radiante";
-        }
-
-        // Exibe a mensagem final
-        console.log(`O Herói de nome ${nomeHeroi} está no nível de ${nivel}`);
-
-        rl.close();
-    });
-});
+// Exemplo de uso:
+let vitorias = 85;
+let derrotas = 20;
+let resultado = calcularNivel(vitorias, derrotas);
+console.log(`O Herói tem um saldo de ${resultado.saldoVitorias} está no nível de ${resultado.nivel}`);
